@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnjhpd2lk27bj"]
+
+[sub_resource type="GDScript" id="GDScript_vouaq"]
+script/source = "extends Area3D
+
+const SPEED = 10
+const RANGE = 40
+
+var trav_dist = 0.0
+
+
+func _physics_process(delta):
+	position += -transform.basis.z * SPEED * delta
+	trav_dist += SPEED * delta
+	if trav_dist > RANGE:
+		queue_free()
+
+
+func _on_body_entered(body):
+	queue_free()
+	if body.has_method(\"take_damage\"):
+		body.take_damage()
+"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_48w5j"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_6mjxj"]
+
+[node name="Bullet" type="Area3D"]
+top_level = true
+script = SubResource("GDScript_vouaq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+shape = SubResource("SphereShape3D_48w5j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+mesh = SubResource("SphereMesh_6mjxj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

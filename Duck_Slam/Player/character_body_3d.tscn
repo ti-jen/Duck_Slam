@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bcyepi0lrewsd"]
 
-[ext_resource type="PackedScene" uid="uid://cmj5oexgexvp0" path="res://Player/bird.glb" id="1_g2je3"]
+[ext_resource type="PackedScene" uid="uid://d1o3pnhx7jcji" path="res://Player/bird.glb" id="1_g2je3"]
 
 [sub_resource type="GDScript" id="GDScript_g2je3"]
 script/source = "extends CharacterBody3D
@@ -12,6 +12,9 @@ const SPEED = 6
 const ACCELERATION = 6
 
 @onready var bird = %bird
+@onready var spawn01 = %spawn01
+@onready var spawn02 = %spawn02
+
 var left_input = \"move_left\"
 var right_input = \"move_right\"
 var up_input = \"move_up\"
@@ -19,6 +22,7 @@ var down_input = \"move_down\"
 var shoot_input = \"shoot\"
 
 func _ready():
+	add_to_group(\"players\")
 	if is_player_one == false:
 		left_input += \"_two\"
 		right_input += \"_two\"
@@ -67,10 +71,21 @@ func take_damage():
 	if is_player_one == true:
 		hud.add_score(2)
 	else:
-		hud.add_score(1) 
-	visible = false 
+		hud.add_score(1)  
+	get_tree().call_group(\"players\", \"respawn\")
+	visible = false
+	if is_player_one == true:
+		global_transform = spawn01.global_transform
+	else:
+		global_transform = spawn02.global_transform
+	
+func respawn():
 	await get_tree().create_timer(1).timeout
-	get_tree().reload_current_scene()
+	if is_player_one == true:
+		global_transform = spawn01.global_transform
+	else:
+		global_transform = spawn02.global_transform
+	visible = true
 "
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b4nnr"]

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bcyepi0lrewsd" path="res://Player/character_body_3d.tscn" id="1_0amv2"]
 [ext_resource type="Material" uid="uid://c4f32j367scj" path="res://Mats/M_Grid_01.tres" id="1_t7ms4"]
 [ext_resource type="Material" uid="uid://ba3lwdm24te6" path="res://Mats/M_Grid_02.tres" id="3_qpmwr"]
-[ext_resource type="Script" uid="uid://dhbrpqg0sins8" path="res://Level/sub_viewport_container.gd" id="4_qpmwr"]
+[ext_resource type="Script" path="res://Level/sub_viewport_container.gd" id="4_qpmwr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7ms4"]
 albedo_color = Color(0, 0, 1, 1)
@@ -23,7 +23,6 @@ ambient_light_source = 2
 ambient_light_color = Color(0.164863, 0.230177, 0.381891, 1)
 ambient_light_energy = 1.2
 tonemap_mode = 2
-fog_enabled = true
 fog_light_color = Color(0.4554, 0.387, 0.9, 1)
 fog_light_energy = 0.1
 fog_sun_scatter = 0.15
@@ -85,6 +84,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0.5, -1)
 material_override = ExtResource("3_qpmwr")
 use_collision = true
 size = Vector3(5, 4, 18)
+
+[node name="spawn01" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.950721, 0, 4.5177174)
+
+[node name="spawn02" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.049279, 0, -5.4822826)
 
 [node name="Player" parent="." instance=ExtResource("1_0amv2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.950721, 0, 4.5177174)
@@ -152,3 +159,23 @@ transform = Transform3D(0.902983, 0.332918, -0.271638, 0, 0.632192, 0.774812, 0.
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0amv2")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4.0584865, -0.12137246, 3.3976932)
+pixel_size = 0.02
+modulate = Color(0, 0.31666684, 1, 1)
+outline_modulate = Color(0.12347304, 0.12347304, 0.12347304, 1)
+text = "Player : 1
+move: WASD
+shoot: SPACE
+"
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 3.9415138, -0.12137246, 3.3976932)
+pixel_size = 0.02
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0.12, 0.12, 0.12, 1)
+text = "Player : 2
+move: arrow keys
+shoot: numbpad 0
+"

@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ba3lwdm24te6"]
 
-[ext_resource type="Texture2D" uid="uid://c3kvo2g82m0ir" path="res://Mats/T_Graybox_01.tga" id="1_3lpc2"]
+[ext_resource type="Texture2D" uid="uid://dpddkuovxfn1" path="res://Mats/T_Graybox_01.tga" id="1_3lpc2"]
 
 [resource]
 cull_mode = 2

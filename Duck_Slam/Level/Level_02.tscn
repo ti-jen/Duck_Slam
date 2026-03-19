@@ -1,0 +1,138 @@
+[gd_scene load_steps=9 format=3 uid="uid://nqh8xc3bmuyy"]
+
+[ext_resource type="Material" uid="uid://c4f32j367scj" path="res://Mats/M_Grid_01.tres" id="1_8oik3"]
+[ext_resource type="Material" uid="uid://ba3lwdm24te6" path="res://Mats/M_Grid_02.tres" id="2_cx2d6"]
+[ext_resource type="PackedScene" uid="uid://bcyepi0lrewsd" path="res://Player/character_body_3d.tscn" id="3_hmuci"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7ms4"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_t7ms4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qpmwr"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_7tfy2"]
+
+[sub_resource type="Environment" id="Environment_0amv2"]
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
+sky = SubResource("Sky_7tfy2")
+ambient_light_source = 2
+ambient_light_color = Color(0.2967, 0.47368515, 0.69, 1)
+ambient_light_energy = 1.2
+tonemap_mode = 2
+fog_light_color = Color(0.9, 0.6264, 0.387, 1)
+fog_light_energy = 0.1
+fog_sun_scatter = 0.15
+fog_density = 0.005
+volumetric_fog_density = 0.01
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Ground" type="CSGBox3D" parent="."]
+transform = Transform3D(2.1480322, 0, 0, 0, 1, 0, 0, 0, 1.8539472, 0.43472886, -0.3746463, -1.2160099)
+material_override = ExtResource("1_8oik3")
+use_collision = true
+size = Vector3(12.964355, 0.5, 9.481201)
+
+[node name="Ground3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.5, -1)
+material_override = ExtResource("2_cx2d6")
+use_collision = true
+size = Vector3(6, 4, 18)
+
+[node name="Ground5" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.5, -9)
+material_override = ExtResource("2_cx2d6")
+use_collision = true
+size = Vector3(4, 4, 20)
+
+[node name="Marker3D" type="Marker3D" parent="Ground5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4.9999995)
+
+[node name="Ground6" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.5, 0.5, 9)
+material_override = ExtResource("2_cx2d6")
+use_collision = true
+size = Vector3(4, 4, 19)
+
+[node name="Ground8" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1, -1, 8)
+material_override = ExtResource("2_cx2d6")
+use_collision = true
+size = Vector3(4, 3, 18)
+
+[node name="Ground7" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 2.1855694e-08)
+material_override = ExtResource("2_cx2d6")
+use_collision = true
+size = Vector3(2, 4, 2)
+
+[node name="Ground9" type="CSGBox3D" parent="."]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 5.0000005, 0, 0)
+material_override = ExtResource("2_cx2d6")
+use_collision = true
+size = Vector3(2, 4, 2)
+
+[node name="Ground10" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.9999995, 0, 0)
+material_override = ExtResource("2_cx2d6")
+use_collision = true
+size = Vector3(2, 4, 2)
+
+[node name="Ground4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0.5, -1)
+material_override = ExtResource("2_cx2d6")
+use_collision = true
+size = Vector3(5, 4, 18)
+
+[node name="Player" parent="." instance=ExtResource("3_hmuci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.950721, 0, 4.5177174)
+is_player_one = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(0.5, 0, 0, 0, -0.5, 7.54979e-08, 0, -7.54979e-08, -0.5, -0.008848667, 1.8913761, -0.014185905)
+material_override = SubResource("StandardMaterial3D_t7ms4")
+mesh = SubResource("PrismMesh_t7ms4")
+skeleton = NodePath("../../Player2")
+
+[node name="Player2" parent="." instance=ExtResource("3_hmuci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.546622, 0, -4.8620543)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player2"]
+transform = Transform3D(0.5, 0, 0, 0, -0.5, 7.54979e-08, 0, -7.54979e-08, -0.5, 0, 1.8913761, 0)
+material_override = SubResource("StandardMaterial3D_qpmwr")
+mesh = SubResource("PrismMesh_t7ms4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.71263856, 0.7015314, 0, -0.7015314, 0.71263856, -9.536743e-07, 15.75342, 15.611195)
+fov = 28.9
+size = 6.69
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.902983, 0.332918, -0.271638, 0, 0.632192, 0.774812, 0.429676, -0.699642, 0.570858, 0, 0, 0)
+light_color = Color(1, 0.9535, 0.90999997, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0amv2")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4.0584865, -0.12137246, 3.3976932)
+pixel_size = 0.02
+modulate = Color(0, 0.31666684, 1, 1)
+outline_modulate = Color(0.12347304, 0.12347304, 0.12347304, 1)
+text = "Player : 1
+move: WASD
+shoot: SPACE
+"
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 3.9415138, -0.12137246, 3.3976932)
+pixel_size = 0.02
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0.12, 0.12, 0.12, 1)
+text = "Player : 2
+move: arrow keys
+shoot: numbpad 0
+"

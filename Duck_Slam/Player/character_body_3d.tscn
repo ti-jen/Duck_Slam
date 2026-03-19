@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bcyepi0lrewsd"]
 
-[ext_resource type="PackedScene" uid="uid://dlsr7jaj0h6k0" path="res://Player/bird.glb" id="1_g2je3"]
+[ext_resource type="PackedScene" uid="uid://cmj5oexgexvp0" path="res://Player/bird.glb" id="1_g2je3"]
 
 [sub_resource type="GDScript" id="GDScript_g2je3"]
 script/source = "extends CharacterBody3D
@@ -55,8 +55,19 @@ func shoot_bullet():
 	new_bullet.global_transform = %Marker3D.global_transform
 	
 	%Timer.start()
-	
+
 func take_damage():
+	# 1. Get the viewport's active camera
+	var cam = get_viewport().get_camera_3d()
+	
+	# 2. Find the container under that camera
+	var hud = cam.get_node(\"SubViewportContainer\")
+
+	# Use 1 for P1, 2 for P2
+	if is_player_one == true:
+		hud.add_score(2)
+	else:
+		hud.add_score(1) 
 	visible = false 
 	await get_tree().create_timer(1).timeout
 	get_tree().reload_current_scene()

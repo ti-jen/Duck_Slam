@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqpjl4evrwoos"]
+[gd_scene load_steps=10 format=3 uid="uid://dqpjl4evrwoos"]
 
 [ext_resource type="PackedScene" uid="uid://bcyepi0lrewsd" path="res://Player/character_body_3d.tscn" id="1_0amv2"]
 [ext_resource type="Material" uid="uid://c4f32j367scj" path="res://Mats/M_Grid_01.tres" id="1_t7ms4"]
 [ext_resource type="Material" uid="uid://ba3lwdm24te6" path="res://Mats/M_Grid_02.tres" id="3_qpmwr"]
+[ext_resource type="Script" uid="uid://dhbrpqg0sins8" path="res://Level/sub_viewport_container.gd" id="4_qpmwr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7ms4"]
 albedo_color = Color(0, 0, 1, 1)
@@ -107,6 +108,44 @@ mesh = SubResource("PrismMesh_t7ms4")
 transform = Transform3D(1, 0, 0, 0, 0.71263856, 0.7015314, 0, -0.7015314, 0.71263856, -9.536743e-07, 15.75342, 15.611195)
 fov = 30.0
 size = 6.69
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Camera3D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_qpmwr")
+
+[node name="SubViewport" type="SubViewport" parent="Camera3D/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Control" type="Control" parent="Camera3D/SubViewportContainer/SubViewport"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreBG" type="ColorRect" parent="Camera3D/SubViewportContainer/SubViewport/Control"]
+custom_minimum_size = Vector2(800, 100)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_right = 400.0
+offset_bottom = 100.0
+grow_horizontal = 2
+color = Color(0.35686275, 0.35686275, 0.35686275, 0.7647059)
+
+[node name="GameScoreLabel" type="Label" parent="Camera3D/SubViewportContainer/SubViewport/Control"]
+layout_mode = 0
+offset_right = 372.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 60
+text = "P1: 0  |  P2: 0"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.902983, 0.332918, -0.271638, 0, 0.632192, 0.774812, 0.429676, -0.699642, 0.570858, 0, 0, 0)
